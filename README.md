@@ -28,11 +28,41 @@ Scenario
 - (PUSH) If both player and dealer have the same point value, neither wins the round.
 - (WIN/LOSE) Player/Dealer with higher point value wins, and the opposite side loses.
 
-Gameplay (Javascript)
-1. If the dealer has blackjack and the player doesn't, the player automatically loses.
-2. If the player has blackjack and the dealer doesn't, the player automatically wins.
-3. If both the player and dealer have blackjack then it's a push. -> round ends, go to next round. 
-4. If neither side has blackjack, then player will given options to play out his/her hand.
+
+(Javascript)
+
+Frame 1
+Starting Page
+1. Request the player's name and starting balance.
+(Create a form to ask for player's name and starting balance.)
+
+Frame 2
+General gameplay
+1. Player enters the wedger for the current round. Take note: player cannot enter wedger more than the remaining balance. If not, system will reject and auto prompt for another input.
+(Create a input for wedger.)
+(Create a "Play" button to start the game.)
+
+3. Cards are dealt randomly.
+(Create a function to deal the cards randomly. 1st card (shown) and 2nd card (hidden).)
+
+4. If the dealer has blackjack and the player doesn't, the player automatically loses.
+- (Create the condition to check for this)
+4. If the player has blackjack and the dealer doesn't, the player automatically wins.
+- (Create the condition to check for this)
+5. If both the player and dealer have blackjack then it's a push. -> round ends, go to next round.
+- (Create the condition to check for this)
+6. If neither side has blackjack, then player will given options to play out his/her hand. (Create the condition to check for this)
 Options as follow:
-- Hit (take another card)
+- Hit (take another card) // create a function to allow players to take a card (hit) or hold position (Stand).
 - Stand (take no more card)
+7. Based on the value point, evaluate player or dealer wins the game.
+(Create a function to evaluate the value point between player and dealer, then determine the winner)
+
+Frame 3
+Outcome
+- If player wins, "remaining balance" + wedger.
+- If player loses, "remaining balance" - wedger.
+- If player do not have any remaining balance, exit the game. Else, prompt the player to continue playing or exit the game.
+(Renders the "WIN" or "LOSE" message and the remaining balance. Create two buttons to allow player to continue player or exit the game). 
+
+
