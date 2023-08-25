@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<h1>Welcome to the Blackjack game!</h1>
+<img src="https://user-images.githubusercontent.com/93700857/262880888-f3697fbd-076e-45b5-b37d-78fb270dd20b.png">
+<body>
+    <h2> Dealer Point : <span id="dealerPoint"></span></h2>
+    <div id="dealerCards">
+        <img id ="hidden" src="./cards/BACK.png">
+    </div>
+
+    <h2> Your Point: <span id="playerPoint"></span></h2>
+    <div id="playerCards"></div>
+    </br>
+    <button id="Hit"> Hit </button>
+    <button id="Stand"> Stand </button>
+    <div id="result"></div>
+
+    <form>
+        Please enter your name below. <br/><br/>
+        <label for="name">Player name:</label><br>
+        <input type="text" id="name"><br><br/>
+        Please enter your starting balance. <br/><br/>
+        <label for="balance">Starting Balance:</label><br>
+        <input type="number" id="balance"><br/><br/>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+    <script type="module" src="main.js" defer></script>
+</html>
