@@ -5,16 +5,24 @@ let dealerAceCount = 0; // to keep track of number of Ace's to determine whether
 let playerAceCount = 0;
 let canHit = true; // allows the player to draw card if the point is less than 21.
 let canStand = true;
-
- /*----- state variables -----*/
 let deck = [];
 let hidden = [];
+let balance = 100; // set initial balance
+let wager = 0 // set initial wager
+
+ /*----- state variables -----*/
+
 
  /*----- cached elements  -----*/
 
 
 
  /*----- event listeners -----*/
+ const restartButton = document.getElementById("Restart");
+ 
+
+ const continueButton = document.getElementById("Continue");
+//  continueButton.addEventListener("click", continueGame);
 
 
  /*----- functions -----*/
@@ -40,45 +48,75 @@ const shuffleDeck = () => {
 }
 
 const startGame = () => {
-    hidden = deck.pop(); // dealer's hidden card
+    dealerPoint = 0;
+    playerPoint = 0;
+    dealerAceCount = 0;
+    playerAceCount = 0;
+    canHit = true;
+    canStand = true;
+    deck = [];
+    hidden = null;
+
+    startingDeck(); // Initialize the deck
+
+    // Reset dealer cards
+    const dealerCardsElement = document.getElementById('dealerCards');
+    const dealerCardImages = dealerCardsElement.getElementsByTagName('img');
+    for (let i = dealerCardImages.length - 1; i > 0; i--) {
+        dealerCardImages[i].remove();
+    }
+
+    // Reset player cards
+    const playerCardsElement = document.getElementById('playerCards');
+    playerCardsElement.innerHTML = '';
+
+    // Reset hidden card to back image
+    const hiddenElement = document.getElementById('hidden');
+    if (hiddenElement) {
+        hiddenElement.src = "./cards/BACK.png";
+    }
+
+    // Deal dealer's hidden card
+    hidden = deck.pop(); 
     dealerPoint += getValue(hidden);
     dealerAceCount += checkAce(hidden);
-    // console.log(hidden);
-    // console.log(dealerPoint);
 
-    while (dealerPoint < 16){ // Set a minimum point for the dealer to draw card
-        let cardImg = document.createElement('Img'); // create and append the card image element into the dealer hand, sourced the image from the ./card folder
+    // Deal card to dealer (enure above 16 pts) and deal card to player
+    while (dealerPoint < 16 && deck.length > 0) {
+        let cardImg = document.createElement('img');
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
         dealerPoint += getValue(card);
         dealerAceCount += checkAce(card);
         document.getElementById('dealerCards').append(cardImg);
     }
-    // console.log(dealerPoint);
 
-    // start of the game, player should get 2 cards
-    for (i=0; i < 2; i++) {
-        let cardImg = document.createElement('Img'); // create and append the card image element into the dealer hand, sourced the image from the ./card folder
+    for (let i = 0; i < 2 && deck.length > 0; i++) {
+        let cardImg = document.createElement('img');
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
         playerPoint += getValue(card);
         playerAceCount += checkAce(card);
         document.getElementById('playerCards').append(cardImg);
     }
-    // console.log(playerPoint);
 
     const hitButton = document.getElementById("Hit");
     hitButton.addEventListener("click", hit);
 
     const standButton = document.getElementById("Stand");
     standButton.addEventListener("click", stand);
+
+    // Reset other elements
+    document.getElementById('dealerPoint').innerText = "";
+    document.getElementById('playerPoint').innerText = "";
+    document.getElementById('result').innerText = "";
 }
 
 const hit = () => {     // Logic for drawing a card
     if(!canHit){
         return;
     }         
-    let cardImg = document.createElement('Img'); // create and append the card image element into the dealer hand, sourced the image from the ./card folder
+    let cardImg = document.createElement('img'); // create and append the card image element into the dealer hand, sourced the image from the ./card folder
     let card = deck.pop();
     cardImg.src = "./cards/" + card + ".png";
     playerPoint += getValue(card);
@@ -97,6 +135,9 @@ const stand = () => {  // stand condition ends the game
     canHit = false;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
 
+    console.log(dealerPoint);
+    console.log(playerPoint);
+
     let displayMessage = "";  // display message for outcome of different scenarios
     if (playerPoint > 21){    // blackjack favours the dealer, player will lose even if dealer bust.
         displayMessage = "Dealer wins";
@@ -104,7 +145,9 @@ const stand = () => {  // stand condition ends the game
         displayMessage = "Player wins";
     } else if (playerPoint === dealerPoint){
         displayMessage = "It's a draw."
-    } displayMessage = "Dealer wins"
+    } else if (playerPoint < 21 && dealerPoint > 21){
+        displayMessage = "Player wins." 
+    } else {displayMessage = "Dealer wins"};
 
     document.getElementById('dealerPoint').innerText = dealerPoint;
     document.getElementById('playerPoint').innerText = playerPoint;
@@ -150,7 +193,14 @@ const dealerPointAceCount = (dealerPoint, dealerAceCount) => {
     return dealerPoint;
 }
 
+const restartGame = () => {
+ 
+    console.log("restart button clicked");
 
+    startGame();
+}
+
+restartButton.addEventListener("click", restartGame);
 
 window.onload = () => {
     startingDeck();
