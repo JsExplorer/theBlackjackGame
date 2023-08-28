@@ -9,6 +9,7 @@
 <h1>Welcome to the Blackjack game!</h1>
 <img src="https://user-images.githubusercontent.com/93700857/262880888-f3697fbd-076e-45b5-b37d-78fb270dd20b.png">
 <body>
+    <form id="gameForm">
     <h2> Dealer Point : <span id="dealerPoint"></span></h2>
     <div id="dealerCards">
         <img id ="hidden" src="./cards/BACK.png">
@@ -17,22 +18,23 @@
     <h2> Your Point: <span id="playerPoint"></span></h2>
     <div id="playerCards"></div>
     </br>
-    <button id="Hit"> Hit </button>
-    <button id="Stand"> Stand </button>
+    <button id="hit" type="button"> Hit </button>
+    <button id="stand" type="button"> Stand </button>
     <div id="result"></div>
-    <button id="Restart"> Restart </button>
-    <button id="Continue"> Continue Playing </button>
+    <button id="restart"> Restart the game </button>
+    <button id="continue" type="button"> Continue Playing </button>
 
-    <form>
-        Please enter your name below. <br/><br/>
-        <label for="name">Player name:</label><br>
+    <br/><br/>
+
+        Please enter your name, starting balance and wager below. <br/><br/>
+        <label for="name">Player name:</label>
         <input type="text" id="name"><br><br/>
-        Please enter your starting balance. <br/><br/>
-        <label for="balance">Starting Balance:</label><br>
+        <label for="balance">Balance:</label>
         <input type="number" id="balance"><br/><br/>
-        <input type="submit" value="Submit">
+        <label for="wager">Wager for this round:</label>
+        <input type="number" id="wager"><br/><br/>
+        <button id="start" type="button">Start playing</button>
     </form>
-
-</body>
     <script src="main.js" defer></script>
+</body>
 </html>

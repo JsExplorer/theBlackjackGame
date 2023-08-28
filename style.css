@@ -20,15 +20,12 @@
     margin : 2px
   }
 
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    border: 4px dotted grey;
-    padding: 10px;
+  #result {
+    font-size: 50px;
+    margin : 2px;
+    color: red;
   }
-  
+
   button {
     display: inline;
     margin: 10px auto;

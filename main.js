@@ -7,23 +7,35 @@ let canHit = true; // allows the player to draw card if the point is less than 2
 let canStand = true;
 let deck = [];
 let hidden = [];
-let balance = 100; // set initial balance
-let wager = 0 // set initial wager
+// let balance = 0; // Initialize balance
+// let wager = 0; // Initialize balance
 
  /*----- state variables -----*/
 
 
  /*----- cached elements  -----*/
-
-
+ const restartButton = document.getElementById("restart");
+ const continueButton = document.getElementById("continue");
+ const balanceInput = document.getElementById('balance');
+ const wagerInput = document.getElementById('wager');
+ const startButton = document.getElementById('start');
 
  /*----- event listeners -----*/
- const restartButton = document.getElementById("Restart");
- 
+ startButton.addEventListener('click', () => {
+    balance = parseInt(balanceInput.value);
+    if(isNaN(balance) || balance <=0) {
+        alert("please enter valid starting balance.");
+        return;
+    }
 
- const continueButton = document.getElementById("Continue");
-//  continueButton.addEventListener("click", continueGame);
+    wager = parseInt(wagerInput.value);
+    if (isNaN(wager) || wager <= 0 || wager > balance) {
+        alert("Please enter a valid wager with your available balance!");
+        return;
+    }
 
+    startGame();
+ });
 
  /*----- functions -----*/
 const startingDeck = () => {
@@ -48,6 +60,14 @@ const shuffleDeck = () => {
 }
 
 const startGame = () => {
+    wager = parseInt(wagerInput.value);
+    if (wager <=0 || wager > balance){
+        alert("Please enter a valid wager with your available balance!")
+        return;
+    }
+
+    balanceInput.innerText = `Balance: $${balance}`;
+
     dealerPoint = 0;
     playerPoint = 0;
     dealerAceCount = 0;
@@ -55,7 +75,7 @@ const startGame = () => {
     canHit = true;
     canStand = true;
     deck = [];
-    hidden = null;
+    hidden = '';
 
     startingDeck(); // Initialize the deck
 
@@ -100,10 +120,10 @@ const startGame = () => {
         document.getElementById('playerCards').append(cardImg);
     }
 
-    const hitButton = document.getElementById("Hit");
+    const hitButton = document.getElementById("hit");
     hitButton.addEventListener("click", hit);
 
-    const standButton = document.getElementById("Stand");
+    const standButton = document.getElementById("stand");
     standButton.addEventListener("click", stand);
 
     // Reset other elements
@@ -135,29 +155,37 @@ const stand = () => {  // stand condition ends the game
     canHit = false;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
 
-    console.log(dealerPoint);
-    console.log(playerPoint);
+    // console.log(dealerPoint);
+    // console.log(playerPoint);
 
     let displayMessage = "";  // display message for outcome of different scenarios
     if (playerPoint > 21){    // blackjack favours the dealer, player will lose even if dealer bust.
         displayMessage = "Dealer wins";
+        balance -= wager;
+        balanceInput.innerText = `Balance: $${balance}`;
     } else if (playerPoint > dealerPoint){
         displayMessage = "Player wins";
+        balance += wager;
+        balanceInput.innerText = `Balance: $${balance}`;
     } else if (playerPoint === dealerPoint){
-        displayMessage = "It's a draw."
+        displayMessage = "It's a draw.";
+        balanceInput.innerText = `Balance: $${balance}`;
     } else if (playerPoint < 21 && dealerPoint > 21){
-        displayMessage = "Player wins." 
-    } else {displayMessage = "Dealer wins"};
+        displayMessage = "Player wins.";
+        balance += wager;
+        balanceInput.innerText = `Balance: $${balance}`;
+    } else { 
+        displayMessage = "Dealer wins";
+        balance -= wager;
+        balanceInput.innerText = `Balance: $${balance}`;
+};
 
     document.getElementById('dealerPoint').innerText = dealerPoint;
     document.getElementById('playerPoint').innerText = playerPoint;
     document.getElementById('result').innerText = displayMessage;
 
+    console.log(balance);
 }
-
-
-
-
 
 const getValue = (card) => {
     let data = card.split("-"); // for e.g. "7-D" -> ["7", "D"]
@@ -194,15 +222,26 @@ const dealerPointAceCount = (dealerPoint, dealerAceCount) => {
 }
 
 const restartGame = () => {
- 
     console.log("restart button clicked");
-
     startGame();
 }
 
 restartButton.addEventListener("click", restartGame);
 
+
+const continueGame = () => {
+    if (balance <= 0) {
+        alert("Your balance is empty. Please restart the game.");
+        return;
+    }
+    startGame();
+    balanceInput.innerText = `Balance: $${balance}`;
+};
+
+continueButton.addEventListener("click", continueGame);
+
 window.onload = () => {
+    balanceInput.innerText = `Balance: $${balance}`;
     startingDeck();
     startGame();
 }
