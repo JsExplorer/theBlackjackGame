@@ -1,4 +1,10 @@
  /*----- constants -----*/
+ const addHidden = (x) => {
+    x.classList.add('hidden');
+ }
+ const removeHidden = (x) => {
+    x.classList.remove('hidden');
+}
 
  /*----- state variables -----*/
  let dealerPoint = 0;
@@ -11,18 +17,22 @@
  let hidden = [];
 
  /*----- cached elements  -----*/
+ const dealerAndplayer = document.getElementById("dealerAndplayer"); // hide the dealer and player elements before the start of the game
+ addHidden(dealerAndplayer);
  const restartButton = document.getElementById("restart");
  const continueButton = document.getElementById("continue");
  const balanceInput = document.getElementById('balance');
  const wagerInput = document.getElementById('wager');
  const startButton = document.getElementById('start');
  const inputField = document.getElementById('input-field');
- 
+
  /*----- event listeners -----*/
  startButton.addEventListener('click', () => {
-    // Hide balance and wager input when game starts
-    inputField.classList.add('hidden'); 
-    console.log(inputField.getAttribute('class'));
+    // Hide inputField, show dealer and player elements, restart and continiue buttons when game start
+    addHidden(inputField);
+    removeHidden(dealerAndplayer);
+    removeHidden(restartButton);
+    removeHidden(continueButton);
  
     balance = parseInt(balanceInput.value);
     if(isNaN(balance) || balance <=0) {
@@ -190,7 +200,7 @@ const stand = () => {  // stand condition ends the game
 
     console.log(balance);
 
-    inputField.classList.remove('hidden');
+    removeHidden(inputField);
 }
 
 const getValue = (card) => {
@@ -237,7 +247,7 @@ restartButton.addEventListener("click", restartGame);
 
 const continueGame = () => {
 
-    inputField.classList.add('hidden');
+    addHidden(inputField);
 
     if (balance <= 0) {
         alert("Your balance is empty. Please restart the game.");

@@ -10,30 +10,30 @@
 <img src="https://user-images.githubusercontent.com/93700857/262880888-f3697fbd-076e-45b5-b37d-78fb270dd20b.png">
 <body>
     <form id="gameForm">
-    <h2> Dealer Point : <span id="dealerPoint"></span></h2>
-    <div id="dealerCards">
-        <img id ="hidden" src="./cards/BACK.png">
-    </div>
-
-    <h2> Your Point: <span id="playerPoint"></span></h2>
-    <div id="playerCards"></div>
-    </br>
-    <button id="hit" type="button"> Hit </button>
-    <button id="stand" type="button"> Stand </button>
-    <div id="result"></div>
-    <div id="input-field"><button id="restart"> Restart the game </button>
-    <button id="continue" type="button"> Continue Playing </button>
-
-    <br/><br/>
-
-        <div>Please enter your name, starting balance and wager below.</div><br/><br/>
-            <label for="name">Player name:</label>
-            <input type="text" id="name"><br><br/>
-            <label for="balance">Balance:</label>
-            <input type="number" id="balance"><br/><br/>
-            <label for="wager">Wager for this round:</label>
-            <input type="number" id="wager"> <br/><br/>
+    <div id="dealerAndplayer">
+        <h2> Dealer Point : <span id="dealerPoint"></span></h2>
+        <div id="dealerCards">
+            <img id ="hidden" src="./cards/BACK.png">
         </div>
+        <h2> Your Point: <span id="playerPoint"></span></h2>
+        <div id="playerCards"></div>
+        </br>
+        <button id="hit" type="button"> Hit </button>
+        <button id="stand" type="button"> Stand </button>
+        <div id="result"></div>
+    </div>
+    <div id="input-field">
+        <button id="restart" class="hidden"> Restart the game </button>
+        <button id="continue" type="button" class="hidden"> Continue Playing </button>
+        <br/><br/>
+        <div>Please enter your name, starting balance and wager below.</div><br/><br/>
+        <label for="name">Player name:</label>
+        <input type="text" id="name"><br><br/>
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance"><br/><br/>
+        <label for="wager">Wager for this round:</label>
+        <input type="number" id="wager"> <br/><br/>
+    </div>
         <button id="start" type="button">Start playing</button>
     </form>
     <script src="main.js" defer></script>
