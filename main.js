@@ -87,7 +87,7 @@ const startingDeck = () => {
         }
     }
     shuffleDeck(); // shuffle the deck at the start of the game
-    console.log(deck);
+    // console.log(deck);
 } 
 
 const shuffleDeck = () => {
