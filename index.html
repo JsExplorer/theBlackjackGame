@@ -36,6 +36,26 @@
     </div>
         <button id="start" type="button">Start playing</button>
     </form>
+
+
+    <button class="modal-buttons" id="openModal">About the Game</button>
+    <dialog id="modal">
+      <div id="modal-textbox">
+        <div id="modal-footer">
+            <form method="dialog">
+                <button class="modal-buttons" id="close">Close</button>
+            </form>
+          </div>
+        <h1>Learn to Play Blackjack</h1>
+        <li>Deck of 52 cards are shuffled at the start of the game.</li>
+        <li>The hands with the highest point value (not exceeding 21), will win the round.</li>
+        <li>Total value of more than 21 = bust. If player busts, he/she loses, even if dealer also busts -> Blackjack favours the dealer.</li>
+        <li>You may change your wager after each round.</li>
+      </div>
+    </dialog>
+    </div>
+
+
     <script src="main.js" defer></script>
 </body>
 </html>

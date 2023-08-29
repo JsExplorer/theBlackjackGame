@@ -1,10 +1,35 @@
  /*----- constants -----*/
  const addHidden = (x) => {
     x.classList.add('hidden');
- }
+}
  const removeHidden = (x) => {
     x.classList.remove('hidden');
 }
+
+const enableInputs = () => {
+    document.getElementById('name').removeAttribute('disabled');
+    document.getElementById('balance').removeAttribute('disabled');
+};
+
+const disableInputs = () => {
+    document.getElementById('name').setAttribute('disabled', 'true');
+    document.getElementById('balance').setAttribute('disabled', 'true');
+};
+
+
+// Trying modal
+//Grabbing Elements
+const $openBtn = document.querySelector('#openModal');
+const $modal = document.querySelector('#modal');
+const $closeBtn = document.querySelector('#close');
+
+//Event Handlers
+const openModal = () => {
+  $modal.showModal()
+}
+
+//Event Listeners
+$openBtn.addEventListener('click', openModal);
 
  /*----- state variables -----*/
  let dealerPoint = 0;
@@ -33,6 +58,9 @@
     removeHidden(dealerAndplayer);
     removeHidden(restartButton);
     removeHidden(continueButton);
+    disableInputs();
+
+    //Disable inputs for balance, 
  
     balance = parseInt(balanceInput.value);
     if(isNaN(balance) || balance <=0) {
@@ -238,7 +266,8 @@ const dealerPointAceCount = (dealerPoint, dealerAceCount) => {
 }
 
 const restartGame = () => {
-    console.log("restart button clicked");
+    // console.log("restart button clicked");
+    enableInputs(); 
     startGame();
 }
 
