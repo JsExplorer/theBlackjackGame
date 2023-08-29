@@ -66,4 +66,4 @@ Outcome
 - If player do not have any remaining balance, exit the game. Else, prompt the player to continue playing or exit the game.
 (Renders the "WIN" or "LOSE" message and the remaining balance. Create two buttons to allow player to continue player or exit the game). 
 
-
+Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
