@@ -16,6 +16,36 @@ const disableInputs = () => {
     document.getElementById('balance').setAttribute('disabled', 'true');
 };
 
+const dealCardToDealer = () => {
+    let cardImg = document.createElement('img');
+    let card = deck.pop();
+    cardImg.src = "./cards/" + card + ".png";
+    dealerPoint += getValue(card);
+    dealerAceCount += checkAce(card);
+    document.getElementById('dealerCards').append(cardImg);
+}
+
+const dealCardToPlayer = () => { // deal card to player
+    let cardImg = document.createElement('img');
+    let card = deck.pop();
+    cardImg.src = "./cards/" + card + ".png";
+    playerPoint += getValue(card);
+    playerAceCount += checkAce(card);
+    document.getElementById('playerCards').append(cardImg);
+}
+
+const dealCardToDealerHidden = () => {  // deal card to dealer
+    hidden = deck.pop();
+    dealerPoint += getValue(hidden);
+    dealerAceCount += checkAce(hidden);
+    const hiddenElement = document.getElementById('hidden');
+    hiddenElement.src = "./cards/BACK.png";
+}
+
+const revealHiddenCard = () => { // reveal hidden card when there's Blackjack
+    document.getElementById('hidden').src = "./cards/" + hidden + ".png";
+}
+
 
 // Trying modal (for About Game)
 //Grabbing Elements
@@ -150,29 +180,51 @@ const startGame = () => {
         hiddenElement.src = "./cards/BACK.png";
     }
 
-    // Deal dealer's hidden card
-    hidden = deck.pop(); 
-    dealerPoint += getValue(hidden);
-    dealerAceCount += checkAce(hidden);
+    // Deal 2 cards to dealer and player each
+    dealCardToDealerHidden(); // Deal the first card of the dealer as hidden
+    dealCardToPlayer();
+    dealCardToDealer();
+    dealCardToPlayer();
 
-    // Deal card to dealer (enure above 16 pts) and deal card to player
-    while (dealerPoint < 16 && deck.length > 0) {
-        let cardImg = document.createElement('img');
-        let card = deck.pop();
-        cardImg.src = "./cards/" + card + ".png";
-        dealerPoint += getValue(card);
-        dealerAceCount += checkAce(card);
-        document.getElementById('dealerCards').append(cardImg);
+    // Check for blackjack for dealer and player
+    if (playerPoint === 21) {
+        if (dealerPoint === 21) {
+            // Both dealer and player have blackjack, it's a draw
+            balanceInput.value = balance;
+            document.getElementById('dealerPoint').innerText = dealerPoint;
+            document.getElementById('playerPoint').innerText = playerPoint;
+            document.getElementById('result').innerText = "It's a draw (both have Blackjack)!";
+            removeHidden(inputField);
+            revealHiddenCard();
+            return;
+        } else {
+            // Player has blackjack, player wins
+            balance += wager ; 
+            balanceInput.value = balance;
+            document.getElementById('dealerPoint').innerText = dealerPoint;
+            document.getElementById('playerPoint').innerText = playerPoint;
+            document.getElementById('result').innerText = "Player wins with Blackjack!";
+            removeHidden(inputField)
+            revealHiddenCard();
+            return;
+        }
+    } else if (dealerPoint === 21) {
+        // Dealer has blackjack, dealer wins
+        balance -= wager; // Player loses the wager
+        balanceInput.value = balance;
+        document.getElementById('dealerPoint').innerText = dealerPoint;
+        document.getElementById('playerPoint').innerText = playerPoint;
+        document.getElementById('result').innerText = "Dealer wins with Blackjack!";
+        removeHidden(inputField)
+        revealHiddenCard();
+        return;
     }
 
-    for (let i = 0; i < 2 && deck.length > 0; i++) {
-        let cardImg = document.createElement('img');
-        let card = deck.pop();
-        cardImg.src = "./cards/" + card + ".png";
-        playerPoint += getValue(card);
-        playerAceCount += checkAce(card);
-        document.getElementById('playerCards').append(cardImg);
-    }
+    // Enable hit and stand buttons
+    document.getElementById("hit").removeAttribute('disabled');
+    document.getElementById("stand").removeAttribute('disabled');
+
+    // check for player and dealer blackjack before starting the game.
 
     const hitButton = document.getElementById("hit");
     hitButton.addEventListener("click", hit);
@@ -214,6 +266,11 @@ const stand = () => {  // stand condition ends the game
     playerPoint = playerPointAceCount(playerPoint, playerAceCount);
     canHit = false;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
+    
+    // Player has chosen to stand, handle dealer's draw logic
+    while (dealerPoint < 16 && deck.length > 0) {
+        dealCardToDealer();
+    }
 
     let displayMessage = "";  // display message for outcome of different scenarios
     if (playerPoint > 21){    // blackjack favours the dealer, player will lose even if dealer bust.
