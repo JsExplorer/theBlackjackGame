@@ -275,12 +275,12 @@ const startGame = () => {
 
     // Enable hit and stand buttons after checking for Blackjack
 
-    const hitButton = document.getElementById("hit");
-    hitButton.addEventListener("click", hit);
+    // const hitButton = document.getElementById("hit");
+    // hitButton.addEventListener("click", hit);
     document.getElementById("hit").removeAttribute('disabled');
 
-    const standButton = document.getElementById("stand");
-    standButton.addEventListener("click", stand);
+    // const standButton = document.getElementById("stand");
+    // standButton.addEventListener("click", stand);
     standButton.removeAttribute("disabled");
     // Reset other elements
     document.getElementById('dealerPoint').innerText = "";
@@ -327,11 +327,6 @@ const stand = () => {  // stand condition ends the game
             dealCardToPlayer();
             playerPoint = playerPointAceCount(playerPoint, playerAceCount);
         }
-    }
-
-    if (playerPoint < 16) {
-        alert("Your hand value is less than 16. Do you want to hit?");
-        return;
     }
 
     let displayMessage = "";  // display message for outcome of different scenarios
