@@ -84,8 +84,7 @@ const closeModal2 = () => {
  let playerPoint = 0;
  let dealerAceCount = 0; // to keep track of number of Ace's to determine whether it should be 1 or 11 points.
  let playerAceCount = 0;
- let canHit = true; // allows the player to draw card if the point is less than 21.
- let canStand = true;
+ let canHit = true; 
  let standUsed = false;
  let deck = [];
  let hidden = [];
@@ -274,15 +273,14 @@ const startGame = () => {
         return;
     }
 
-    // Enable hit and stand buttons
+    // Enable hit and stand buttons after checking for Blackjack
+
+    const hitButton = document.getElementById("hit");
+    hitButton.addEventListener("click", hit);
     document.getElementById("hit").removeAttribute('disabled');
-    document.getElementById("stand").removeAttribute('disabled');
 
-    // const hitButton = document.getElementById("hit");
-    // hitButton.addEventListener("click", hit);
-
-    // const standButton = document.getElementById("stand");
-    // standButton.addEventListener("click", stand);
+    const standButton = document.getElementById("stand");
+    standButton.addEventListener("click", stand);
     standButton.removeAttribute("disabled");
     // Reset other elements
     document.getElementById('dealerPoint').innerText = "";
@@ -309,15 +307,13 @@ const hit = () => {     // Logic for drawing a card
     document.getElementById('playerCards').append(cardImg);
 
     if (playerPointAceCount(playerPoint, playerAceCount) > 21) { // to check for player point and ace count before allowing player to continue to draw count
-        canHit = false; // not working yet******
+        canHit = false;
     }
 }
 
 const stand = () => {  // stand condition ends the game
     dealerPoint = dealerPointAceCount(dealerPoint, dealerAceCount);
     playerPoint = playerPointAceCount(playerPoint, playerAceCount);
-    canHit = false; // disable hit when stand button is pressed
-    standUsed = true;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
     
     // Player has chosen to stand, handle dealer's draw logic
@@ -331,6 +327,11 @@ const stand = () => {  // stand condition ends the game
             dealCardToPlayer();
             playerPoint = playerPointAceCount(playerPoint, playerAceCount);
         }
+    }
+
+    if (playerPoint < 16) {
+        alert("Your hand value is less than 16. Do you want to hit?");
+        return;
     }
 
     let displayMessage = "";  // display message for outcome of different scenarios
@@ -439,9 +440,3 @@ const restartWithCountdown = () => {
         }, 1000); // delay before reloading the page
     }
 }
-
-// window.onload = () => {
-    balanceInput.innerText = `Balance: $${balance}`;
-    startingDeck();
-    startGame();
-// }
