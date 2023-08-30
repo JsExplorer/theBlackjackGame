@@ -86,9 +86,11 @@ const closeModal2 = () => {
  let playerAceCount = 0;
  let canHit = true; // allows the player to draw card if the point is less than 21.
  let canStand = true;
+ let standUsed = false;
  let deck = [];
  let hidden = [];
  let restartCounter = 5;
+ let alertShown = false;
 
  /*----- cached elements  -----*/
  const dealerAndplayer = document.getElementById("dealerAndplayer"); // hide the dealer and player elements before the start of the game
@@ -102,30 +104,40 @@ const closeModal2 = () => {
 
  /*----- event listeners -----*/
  balanceInput.addEventListener('input', () => {
-    const startButton = document.getElementById('start');
     const balance = parseInt(balanceInput.value);
     
     if (isNaN(balance) || balance <= 0) {
         startButton.setAttribute('disabled', 'true');
-        alert("please enter valid starting balance.");
+        if (!alertShown) {
+            alert("Please enter a valid starting balance.");
+            alertShown = true;
+        }
     } else {
         startButton.removeAttribute('disabled');
+        alertShown = false;
     }
 });
 
 wagerInput.addEventListener('input', () => {
-    const startButton = document.getElementById('start');
     const wager = parseInt(wagerInput.value);
     
-    if (isNaN(wager) || wager <= 0) {
+    if (isNaN(wager) || wager <= 0 || wager > balanceInput.value) {
         startButton.setAttribute('disabled', 'true');
-        alert("Please enter a valid wager with your available balance!");
+        if (!alertShown) {
+            alert("Please enter a valid wager with your available balance!");
+            alertShown = true;
+        }
     } else {
         startButton.removeAttribute('disabled');
+        alertShown = false;
     }
 });
 
  startButton.addEventListener('click', () => {
+    if (startButton.hasAttribute('disabled')) { 
+        return; // prevent starting the game if the button is disabled
+    }
+
     // Hide inputField, show dealer and player elements, restart and continiue buttons when game start
     addHidden(inputField);
     removeHidden(dealerAndplayer);
@@ -144,11 +156,18 @@ wagerInput.addEventListener('input', () => {
     wager = parseInt(wagerInput.value);
     if (isNaN(wager) || wager <= 0 || wager > balance) {
         alert("Please enter a valid wager with your available balance!");
+        startButton.setAttribute('disabled', 'true'); 
         return;
     }
 
     startGame();
  });
+
+const standButton = document.getElementById("stand");
+standButton.addEventListener("click", () => {
+    stand();
+    standButton.setAttribute("disabled", "true");
+});
 
  /*----- functions -----*/
 const startingDeck = () => {
@@ -189,6 +208,7 @@ const startGame = () => {
     playerAceCount = 0;
     canHit = true;
     canStand = true;
+    standUsed = false;
     deck = [];
     hidden = '';
 
@@ -258,14 +278,12 @@ const startGame = () => {
     document.getElementById("hit").removeAttribute('disabled');
     document.getElementById("stand").removeAttribute('disabled');
 
-    // check for player and dealer blackjack before starting the game.
+    // const hitButton = document.getElementById("hit");
+    // hitButton.addEventListener("click", hit);
 
-    const hitButton = document.getElementById("hit");
-    hitButton.addEventListener("click", hit);
-
-    const standButton = document.getElementById("stand");
-    standButton.addEventListener("click", stand);
-
+    // const standButton = document.getElementById("stand");
+    // standButton.addEventListener("click", stand);
+    standButton.removeAttribute("disabled");
     // Reset other elements
     document.getElementById('dealerPoint').innerText = "";
     document.getElementById('playerPoint').innerText = "";
@@ -298,12 +316,21 @@ const hit = () => {     // Logic for drawing a card
 const stand = () => {  // stand condition ends the game
     dealerPoint = dealerPointAceCount(dealerPoint, dealerAceCount);
     playerPoint = playerPointAceCount(playerPoint, playerAceCount);
-    canHit = false;
+    canHit = false; // disable hit when stand button is pressed
+    standUsed = true;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
     
     // Player has chosen to stand, handle dealer's draw logic
     while (dealerPoint < 16 && deck.length > 0) {
         dealCardToDealer();
+    }
+
+    if (playerPoint < 16) {
+        const hitPrompt = confirm("Your hand value is less than 16. Do you want to hit?");
+        if (hitPrompt) {
+            dealCardToPlayer();
+            playerPoint = playerPointAceCount(playerPoint, playerAceCount);
+        }
     }
 
     let displayMessage = "";  // display message for outcome of different scenarios
