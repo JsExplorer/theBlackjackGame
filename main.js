@@ -16,6 +16,11 @@ const disableInputs = () => {
     document.getElementById('balance').setAttribute('disabled', 'true');
 };
 
+const disableHitandStand = () => {
+    document.getElementById("hit").setAttribute('disabled', 'true');
+    document.getElementById("stand").setAttribute('disabled', 'true');
+}
+
 const dealCardToDealer = () => {
     let cardImg = document.createElement('img');
     let card = deck.pop();
@@ -115,6 +120,8 @@ const closeModal2 = () => {
     wager = parseInt(wagerInput.value);
     if (isNaN(wager) || wager <= 0 || wager > balance) {
         alert("Please enter a valid wager with your available balance!");
+        removeHidden("#input-Field");
+        disableHitandStand();
         return;
     }
 
@@ -147,6 +154,8 @@ const startGame = () => {
     wager = parseInt(wagerInput.value);
     if (wager <=0 || wager > balance){
         alert("Please enter a valid wager with your available balance!")
+        disableHitandStand();
+        removeHidden(inputField);
         return;
     }
 
@@ -196,8 +205,7 @@ const startGame = () => {
             document.getElementById('result').innerText = "It's a draw (both have Blackjack)!";
             removeHidden(inputField);
             revealHiddenCard();
-            document.getElementById("hit").setAttribute('disabled', 'true');
-            document.getElementById("stand").setAttribute('disabled', 'true');
+            disableHitandStand();
             return;
         } else {
             // Player has blackjack, player wins
@@ -208,8 +216,7 @@ const startGame = () => {
             document.getElementById('result').innerText = "Player wins with Blackjack!";
             removeHidden(inputField)
             revealHiddenCard();
-            document.getElementById("hit").setAttribute('disabled', 'true');
-            document.getElementById("stand").setAttribute('disabled', 'true');
+            disableHitandStand();
             return;
         }
     } else if (dealerPoint === 21) {
@@ -221,8 +228,7 @@ const startGame = () => {
         document.getElementById('result').innerText = "Dealer wins with Blackjack!";
         removeHidden(inputField)
         revealHiddenCard();
-        document.getElementById("hit").setAttribute('disabled', 'true');
-        document.getElementById("stand").setAttribute('disabled', 'true');
+        disableHitandStand();
         return;
     }
 
