@@ -45,6 +45,13 @@ Challenges
 
 While developing this Blackjack game, one of the challenges I encountered was properly implementing the logic to control player actions such as hitting and standing, as well as ensuring that the game state is accurately reflected in the UI. The handling of the game's various states, including player turns, card values, and win/lose conditions, required careful consideration and thorough testing to ensure a smooth and enjoyable user experience.
 
+Possible future developments
+
+1. Introduce splitting hands function.
+2. Introduce additional player.
+3. Leaderboard to track highest winrate.
+4. Improving the CSS styling.
+
 Credits
 1. Majority of the rules were adapted from this link : https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010
 2. Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
