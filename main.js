@@ -224,7 +224,7 @@ const stand = () => {  // stand condition ends the game
         balance += wager;
     } else if (playerPoint === dealerPoint){
         displayMessage = "It's a draw.";
-    } else if (playerPoint < 21 && dealerPoint > 21){
+    } else if (playerPoint <= 21 && dealerPoint > 21){
         displayMessage = "Player wins.";
         balance += wager;
     } else { 
