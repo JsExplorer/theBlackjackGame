@@ -101,6 +101,30 @@ const closeModal2 = () => {
  const inputField = document.getElementById('input-field');
 
  /*----- event listeners -----*/
+ balanceInput.addEventListener('input', () => {
+    const startButton = document.getElementById('start');
+    const balance = parseInt(balanceInput.value);
+    
+    if (isNaN(balance) || balance <= 0) {
+        startButton.setAttribute('disabled', 'true');
+        alert("please enter valid starting balance.");
+    } else {
+        startButton.removeAttribute('disabled');
+    }
+});
+
+wagerInput.addEventListener('input', () => {
+    const startButton = document.getElementById('start');
+    const wager = parseInt(wagerInput.value);
+    
+    if (isNaN(wager) || wager <= 0) {
+        startButton.setAttribute('disabled', 'true');
+        alert("Please enter a valid wager with your available balance!");
+    } else {
+        startButton.removeAttribute('disabled');
+    }
+});
+
  startButton.addEventListener('click', () => {
     // Hide inputField, show dealer and player elements, restart and continiue buttons when game start
     addHidden(inputField);
@@ -120,8 +144,6 @@ const closeModal2 = () => {
     wager = parseInt(wagerInput.value);
     if (isNaN(wager) || wager <= 0 || wager > balance) {
         alert("Please enter a valid wager with your available balance!");
-        removeHidden("#input-Field");
-        disableHitandStand();
         return;
     }
 
