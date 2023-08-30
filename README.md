@@ -42,6 +42,7 @@ One of the standout features of this game is the "Restart Game" functionality wi
 
 
 Challenges
+
 While developing this Blackjack game, one of the challenges I encountered was properly implementing the logic to control player actions such as hitting and standing, as well as ensuring that the game state is accurately reflected in the UI. The handling of the game's various states, including player turns, card values, and win/lose conditions, required careful consideration and thorough testing to ensure a smooth and enjoyable user experience.
 
 Credits
