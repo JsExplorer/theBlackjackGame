@@ -21,6 +21,11 @@ const disableHitandStand = () => {
     document.getElementById("stand").setAttribute('disabled', 'true');
 }
 
+const enableHitandStand = () => {
+    document.getElementById("hit").removeAttribute('disabled');
+    document.getElementById("stand").removeAttribute('disabled');
+}
+
 const dealCardToDealer = () => {
     let cardImg = document.createElement('img');
     let card = deck.pop();
@@ -272,16 +277,16 @@ const startGame = () => {
         disableHitandStand();
         return;
     }
-
+    enableHitandStand();
     // Enable hit and stand buttons after checking for Blackjack
 
-    // const hitButton = document.getElementById("hit");
-    // hitButton.addEventListener("click", hit);
+    const hitButton = document.getElementById("hit");
+    hitButton.addEventListener("click", hit);
     document.getElementById("hit").removeAttribute('disabled');
 
-    // const standButton = document.getElementById("stand");
-    // standButton.addEventListener("click", stand);
-    standButton.removeAttribute("disabled");
+    // // const standButton = document.getElementById("stand");
+    // // standButton.addEventListener("click", stand);
+    // standButton.removeAttribute("disabled");
     // Reset other elements
     document.getElementById('dealerPoint').innerText = "";
     document.getElementById('playerPoint').innerText = "";
