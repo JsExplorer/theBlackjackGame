@@ -196,8 +196,8 @@ const startGame = () => {
             document.getElementById('result').innerText = "It's a draw (both have Blackjack)!";
             removeHidden(inputField);
             revealHiddenCard();
-            canHit = false;
-            canStand = false;
+            document.getElementById("hit").setAttribute('disabled', 'true');
+            document.getElementById("stand").setAttribute('disabled', 'true');
             return;
         } else {
             // Player has blackjack, player wins
@@ -208,8 +208,8 @@ const startGame = () => {
             document.getElementById('result').innerText = "Player wins with Blackjack!";
             removeHidden(inputField)
             revealHiddenCard();
-            canHit = false;
-            canStand = false;
+            document.getElementById("hit").setAttribute('disabled', 'true');
+            document.getElementById("stand").setAttribute('disabled', 'true');
             return;
         }
     } else if (dealerPoint === 21) {
@@ -221,8 +221,8 @@ const startGame = () => {
         document.getElementById('result').innerText = "Dealer wins with Blackjack!";
         removeHidden(inputField)
         revealHiddenCard();
-        canHit = false;
-        canStand = false;
+        document.getElementById("hit").setAttribute('disabled', 'true');
+        document.getElementById("stand").setAttribute('disabled', 'true');
         return;
     }
 
