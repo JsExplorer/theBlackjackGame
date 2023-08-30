@@ -17,7 +17,7 @@ const disableInputs = () => {
 };
 
 
-// Trying modal
+// Trying modal (for About Game)
 //Grabbing Elements
 const $openBtn = document.querySelector('#openModal');
 const $modal = document.querySelector('#modal');
@@ -31,6 +31,19 @@ const openModal = () => {
 //Event Listeners
 $openBtn.addEventListener('click', openModal);
 
+// Modal for restarting game with countdown
+const showModal2 = (message) => {
+    const modal = document.getElementById('modal2');
+    const modalMessage = document.getElementById('modal-message');
+    modalMessage.textContent = message;
+    modal.style.display = 'block';
+}
+
+const closeModal2 = () => {
+    const modal = document.getElementById('modal2');
+    modal.style.display = 'none';
+}
+
  /*----- state variables -----*/
  let dealerPoint = 0;
  let playerPoint = 0;
@@ -40,6 +53,7 @@ $openBtn.addEventListener('click', openModal);
  let canStand = true;
  let deck = [];
  let hidden = [];
+ let restartCounter = 5;
 
  /*----- cached elements  -----*/
  const dealerAndplayer = document.getElementById("dealerAndplayer"); // hide the dealer and player elements before the start of the game
@@ -189,7 +203,6 @@ const hit = () => {     // Logic for drawing a card
     playerPoint += getValue(card);
     playerAceCount += checkAce(card);
     document.getElementById('playerCards').append(cardImg);
-    // console.log(playerPoint);
 
     if (playerPointAceCount(playerPoint, playerAceCount) > 21) { // to check for player point and ace count before allowing player to continue to draw count
         canHit = false; // not working yet******
@@ -201,9 +214,6 @@ const stand = () => {  // stand condition ends the game
     playerPoint = playerPointAceCount(playerPoint, playerAceCount);
     canHit = false;
     document.getElementById('hidden').src = "./cards/" + hidden + ".png";
-
-    // console.log(dealerPoint);
-    // console.log(playerPoint);
 
     let displayMessage = "";  // display message for outcome of different scenarios
     if (playerPoint > 21){    // blackjack favours the dealer, player will lose even if dealer bust.
@@ -266,20 +276,23 @@ const dealerPointAceCount = (dealerPoint, dealerAceCount) => {
 }
 
 const restartGame = () => {
-    // console.log("restart button clicked");
-    enableInputs(); 
-    startGame();
+    // enableInputs(); 
+    location.reload(); // refresh the page
 }
 
 restartButton.addEventListener("click", restartGame);
 
-
+//continue game function
 const continueGame = () => {
-
     addHidden(inputField);
 
     if (balance <= 0) {
-        alert("Your balance is empty. Please restart the game.");
+        const countdownMessage = "Your balance is empty. Game will be restarted in 5 seconds";
+        showModal2(countdownMessage);
+        setTimeout(() => {
+            closeModal2();
+            restartWithCountdown();
+        }, 1000); // 5000 milliseconds = 5 seconds
         return;
     }
     startGame();
@@ -287,6 +300,27 @@ const continueGame = () => {
 };
 
 continueButton.addEventListener("click", continueGame);
+
+//restart game function with 5s countdown
+const restartWithCountdown = () => {
+    if (restartCounter > 0) {
+        const countdownMessage = `Restarting game in ${restartCounter} seconds`;
+        showModal2(countdownMessage);
+
+        setTimeout(() => {
+            closeModal2();
+            restartCounter--;
+            restartWithCountdown();
+        }, 1000); // call the function again after 1s
+    } else {
+        showModal2("Restarting game now...");
+        setTimeout(() => {
+            closeModal2();
+            restartCounter = 5;
+            restartGame(); // Reload the page to restart the game
+        }, 1000); // delay before reloading the page
+    }
+}
 
 // window.onload = () => {
     balanceInput.innerText = `Balance: $${balance}`;
