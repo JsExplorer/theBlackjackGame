@@ -1,69 +1,43 @@
 # theBlackjackGame
 A simple Blackjack game. ## English version 
 
-![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/f3697fbd-076e-45b5-b37d-78fb270dd20b)
+Blackjack Game
+Introduction
+
+Welcome to the Blackjack Game! This is a simple browser-based card game that allows you to experience the excitement of playing Blackjack against the dealer. Test your luck and strategic skills in this classic casino game.
+
+Rules and How to Play
+
+1. Blackjack, also known as 21, is a popular casino game where players aim to beat the dealer by having a hand value closest to 21 without exceeding it. Here's how the game works:
+
+2. You start with a balance and place a wager. Values have to be positive and wager must be less than input balance.
+
+![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/eb8dbb5f-f5ab-4494-8a83-14cda802b3b7)
+
+3.You and the dealer are dealt two cards each.
+4. Cards 2 to 10 are worth their face value. Face cards (J, Q, K) are worth 10, and Aces can be worth 1 or 11, whichever is better for your hand.
+5. Your goal is to have a hand value closer to 21 than the dealer without going over.
+6.You can choose to "hit" to draw another card or "stand" to keep your current hand.
+7.If your hand value exceeds 21, you bust and lose the wager.
+8.If your hand value is 21 or less and higher than the dealer's, you win the wager.
+9.If the dealer's hand value exceeds 21 or is lower than yours, you win the wager.
+
+Game link : https://jsexplorer.github.io/theBlackjackGame/
+
+Favourite HTML/JS functions
+
+1. Modal function
+The game features a modal that provides information about the game. By clicking the "About Game" button, you can access this modal to learn more about the game's rules and how to play. 
+
+2. Reset Counter (My Favorite JS Function)
+One of the standout features of this game is the "Restart Game" functionality with a countdown. If your balance reaches zero, the game will automatically restart after a 5-second countdown. This engaging function ensures that you can quickly get back into the action without interruption.
+
+![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/919a48cf-56da-4e23-93c8-a6198a3947a0)
 
 
-Planning the layout of the Blackjack game.
-- the starting page will attempt to use form for the input name and amount.
-- the game play wil display the (entered) starting balance and query user how much does he/she would like to bet in this game. Hit the start button and start playing.
-- once the game is completed. Based on win/lose, the player's reamining balance will be added/deducted based on his wedger.
+Challenges
+While developing this Blackjack game, one of the challenges I encountered was properly implementing the logic to control player actions such as hitting and standing, as well as ensuring that the game state is accurately reflected in the UI. The handling of the game's various states, including player turns, card values, and win/lose conditions, required careful consideration and thorough testing to ensure a smooth and enjoyable user experience.
 
-![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/9420153a-2248-4672-896a-3c350768dd26)
-
-
-Study the rules of Blackjack. credit : https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010.
-- the hands with the highest point value (not exceeding 21), will win the round.
-- total value > 21 === bust
-
-Card value worth
-- card 2 to card 10 are worth their face value, i.e. 2 = 2, 3 = 3, etc.
-- face cards (Jack, Queen and King) are worth 10.
-- ace card default value is 11 unless this woudl cause the player to bust, then it will be deemed as value '1'.
-- two-card hand of 21 (an ace + ten-value card) is called "Blackjack" or a "natural", and is an automatic winner.
-- no minimum point value unlike chinese "ban-luck". - <<to explore implementing minimum point value 12>>
-
-Scenario
-- (BUST) If player busts, he/she loses, even if dealer also busts -> Blackjack favours the dealer.
-- (PUSH) If both player and dealer have the same point value, neither wins the round.
-- (WIN/LOSE) Player/Dealer with higher point value wins, and the opposite side loses.
-
-
-(Javascript)
-
-Frame 1
-Starting Page
-1. Request the player's name and starting balance.
-(Create a form to ask for player's name and starting balance.) // Minimum characters length > 3, 
-
-Frame 2
-General gameplay
-1. Player enters the wager for the current round. Take note: player cannot enter wager more than the remaining balance. If not, system will reject and auto prompt for another input.
-(Create a input for wager.)
-(Create a "Play" button to start the game.)
-
-2. Cards are dealt randomly.
-(Create a function to deal the cards randomly. 1st card (shown) and 2nd card (hidden).)
-
-3. If the dealer has blackjack and the player doesn't, the player automatically loses.
-- (Create the condition to check for this)
-4. If the player has blackjack and the dealer doesn't, the player automatically wins.
-- (Create the condition to check for this)
-5. If both the player and dealer have blackjack then it's a push. -> round ends, go to next round.
-- (Create the condition to check for this)
-6. If neither side has blackjack, then player will given options to play out his/her hand.
-(Create the condition to check for this)
-Options as follow:
-- Hit (take another card) // create a function to allow players to take a card (hit) or hold position (Stand).
-- Stand (take no more card)
-7. Based on the value point, evaluate player or dealer wins the game.
-(Create a function to evaluate the value point between player and dealer, then determine the winner.)
-
-Frame 3
-Outcome
-- If player wins, "remaining balance" + wager.
-- If player loses, "remaining balance" - wager.
-- If player do not have any remaining balance, exit the game. Else, prompt the player to continue playing or exit the game.
-(Renders the "WIN" or "LOSE" message and the remaining balance. Create two buttons to allow player to continue player or exit the game). 
-
-Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
+Credits
+1. Majority of the rules were adapted from this link : https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010
+2. Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
