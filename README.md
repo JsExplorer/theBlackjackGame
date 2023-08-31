@@ -16,7 +16,8 @@ Welcome to the Blackjack Game! This is a simple browser-based card game that all
 ### Tech Stack 
 (1) HTML, (2) CSS, (3) Javascript and (4) GitHub.
 
-Deployment: Github.
+### Deployment
+This game is deployed on GitHub pages. Play here > https://jsexplorer.github.io/theBlackjackGame/
 
 ## Rules & How to Play
 
@@ -40,7 +41,6 @@ Deployment: Github.
 
 9. If the dealer's hand value exceeds 21 or is lower than yours, you win the wager.
 
-Game link : https://jsexplorer.github.io/theBlackjackGame/
 
 ## Favourite JS functions
 
@@ -59,11 +59,11 @@ While developing this Blackjack game, one of the challenges I encountered was pr
 
 ## Possible future developments
 
-1. Introduce splitting hands function.
+1. Introduce the splitting hands function.
 2. Introduce additional player.
-3. Leaderboard to track highest winrate.
+3. Leaderboard to track highest win rate.
 4. Improving the CSS styling.
 
 ## Credits
-1. Majority of the rules were adapted from this link : https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010
-2. Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
+1. Majority of the rules were adapted from this link: https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010
+2. Cards images were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
