@@ -1,12 +1,12 @@
 # The Blackjack Game
 
 ## Overview
-- Introduction [#introduction](https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#introduction)
-- Rules & How to Play #rules-and-how-to-play
-- Favourite JS functions #favourite-js-functions
-- Challenges #challenges
-- Possible future developments #possible-future-developments
-- Credits #credits
+- Introduction (https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#introduction)
+- Rules & How to Play https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#rules--how-to-play
+- Favourite JS functions https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#favourite-js-functions
+- Challenges https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#challenges
+- Possible future developments https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#possible-future-developments
+- Credits https://github.com/JsExplorer/theBlackjackGame/blob/main/README.md#credits
 
 
 ## Introduction
