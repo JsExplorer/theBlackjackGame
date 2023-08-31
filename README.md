@@ -1,12 +1,12 @@
 # The Blackjack Game
 
 ## Overview
-- Introduction 
-- Rules & How to Play
-- Favourite JS functions
-- Challenges
-- Possible future developments
-- Credits
+- Introduction #introduction
+- Rules & How to Play #rules-and-how-to-play
+- Favourite JS functions #favourite-js-functions
+- Challenges #challenges
+- Possible future developments #possible-future-developments
+- Credits #credits
 
 
 ## Introduction
