@@ -13,7 +13,9 @@
 
 Welcome to the Blackjack Game! This is a simple browser-based card game that allows you to experience the excitement of playing Blackjack against the dealer. Test your luck and strategic skills in this classic casino game.
 
-The game is coded using (1) HTML, (2) CSS, (3) Javascript, (4) GitHub. Deployment: Github.
+### Tech Stack 
+(1) HTML, (2) CSS, (3) Javascript and (4) GitHub. 
+Deployment: Github.
 
 ## Rules & How to Play
 
