@@ -1,12 +1,10 @@
 # theBlackjackGame
-A simple Blackjack game. ## English version 
 
-Blackjack Game
-Introduction
+## Introduction
 
 Welcome to the Blackjack Game! This is a simple browser-based card game that allows you to experience the excitement of playing Blackjack against the dealer. Test your luck and strategic skills in this classic casino game.
 
-Rules and How to Play
+## Rules and How to Play
 
 1. Blackjack, also known as 21, is a popular casino game where players aim to beat the dealer by having a hand value closest to 21 without exceeding it. Here's how the game works:
 
@@ -30,7 +28,7 @@ Rules and How to Play
 
 Game link : https://jsexplorer.github.io/theBlackjackGame/
 
-Favourite HTML/JS functions
+## Favourite HTML/JS functions
 
 1. Modal function
 The game features a modal that provides information about the game. By clicking the "About Game" button, you can access this modal to learn more about the game's rules and how to play. 
@@ -41,17 +39,17 @@ One of the standout features of this game is the "Restart Game" functionality wi
 ![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/919a48cf-56da-4e23-93c8-a6198a3947a0)
 
 
-Challenges
+## Challenges
 
 While developing this Blackjack game, one of the challenges I encountered was properly implementing the logic to control player actions such as hitting and standing, as well as ensuring that the game state is accurately reflected in the UI. The handling of the game's various states, including player turns, card values, and win/lose conditions, required careful consideration and thorough testing to ensure a smooth and enjoyable user experience.
 
-Possible future developments
+## Possible future developments
 
 1. Introduce splitting hands function.
 2. Introduce additional player.
 3. Leaderboard to track highest winrate.
 4. Improving the CSS styling.
 
-Credits
+## Credits
 1. Majority of the rules were adapted from this link : https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm#:~:text=Rules,king)%20are%20also%20worth%2010
 2. Cards image were downloaded from Github: https://github.com/ImKennyYip/black-jack/tree/master/cards. <<credits>>
