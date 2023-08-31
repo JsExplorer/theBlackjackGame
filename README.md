@@ -26,19 +26,19 @@ Deployment: Github.
 
 ![image](https://github.com/JsExplorer/theBlackjackGame/assets/93700857/eb8dbb5f-f5ab-4494-8a83-14cda802b3b7)
 
-3.You and the dealer are dealt two cards each.
+3. You and the dealer are dealt two cards each.
 
 4. Cards 2 to 10 are worth their face value. Face cards (J, Q, K) are worth 10, and Aces can be worth 1 or 11, whichever is better for your hand.
   
 5. Your goal is to have a hand value closer to 21 than the dealer without going over.
    
-6.You can choose to "hit" to draw another card or "stand" to keep your current hand.
+6. You can choose to "hit" to draw another card or "stand" to keep your current hand.
 
-7.If your hand value exceeds 21, you bust and lose the wager.
+7. If your hand value exceeds 21, you bust and lose the wager.
 
-8.If your hand value is 21 or less and higher than the dealer's, you win the wager.
+8. If your hand value is 21 or less and higher than the dealer's, you win the wager.
 
-9.If the dealer's hand value exceeds 21 or is lower than yours, you win the wager.
+9. If the dealer's hand value exceeds 21 or is lower than yours, you win the wager.
 
 Game link : https://jsexplorer.github.io/theBlackjackGame/
 
