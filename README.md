@@ -1,10 +1,19 @@
-# theBlackjackGame
+# The Blackjack Game
+
+## Overview
+- Introduction 
+- Rules & How to Play
+- Favourite JS functions
+- Challenges
+- Possible future developments
+- Credits
+
 
 ## Introduction
 
 Welcome to the Blackjack Game! This is a simple browser-based card game that allows you to experience the excitement of playing Blackjack against the dealer. Test your luck and strategic skills in this classic casino game.
 
-## Rules and How to Play
+## Rules & How to Play
 
 1. Blackjack, also known as 21, is a popular casino game where players aim to beat the dealer by having a hand value closest to 21 without exceeding it. Here's how the game works:
 
@@ -28,7 +37,7 @@ Welcome to the Blackjack Game! This is a simple browser-based card game that all
 
 Game link : https://jsexplorer.github.io/theBlackjackGame/
 
-## Favourite HTML/JS functions
+## Favourite JS functions
 
 1. Modal function
 The game features a modal that provides information about the game. By clicking the "About Game" button, you can access this modal to learn more about the game's rules and how to play. 
